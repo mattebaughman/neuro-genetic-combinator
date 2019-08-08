@@ -1,0 +1,118 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{blindtext, graphicx}
+\usepackage{epsfig,xcolor,tikz}
+
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage{authblk}
+
+
+
+\ifCLASSINFOpdf
+\else
+\fi
+
+
+\newif\iffinal
+
+% \finaltrue
+
+\iffinal
+
+  \newcommand{\kyle}[1]{}
+
+  \newcommand{\matt}[1]{}
+\else
+
+  \newcommand{\kyle}[1]{{\textcolor{purple}{ Kyle: #1 }}}
+
+  \newcommand{\matt}[1]{{\textcolor{orange}{ Matt: #1 }}}
+\fi
+
+\usepackage{flushend}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand\code[1]{{\tt \small #1}}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{punct}{red!60!black}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    belowcaptionskip=1\baselineskip,
+    basicstyle=\scriptsize\ttfamily,
+    showstringspaces=false,
+    breaklines=true,
+    frame=tb,
+		captionpos=t,
+    literate=
+     *{:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\newcommand{\smiley}{\tikz[baseline=-0.75ex,red]{
+    \draw circle (2mm);
+\node[fill,circle,inner sep=0.5pt] (left eye) at (135:0.8mm) {};
+\node[fill,circle,inner sep=0.5pt] (right eye) at (45:0.8mm) {};
+\draw (-145:0.9mm) arc (-120:-60:1.5mm);
+    }
+}
+
+%\newcommand{\ian}[1]{}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+\title{Loss Reduction in RNNs with Inter-Epoch Crossover}
+
+
+
+ \author[*]{Matt Baughman}
+ \author[**]{Justin Wozniak (Advisor)}
+ \affil[*]{University of Chicago, Chicago, IL}
+ \affil[**]{Argonne National Laboratory, Argonne, IL}
+
+% make the title area
+\maketitle
+
+\begin{abstract}
+We used a simple recurrent neural network (RNN) to show how various forms of crossover and selection based on fitness lead to lower loss after equivalent amounts of training compared to training multiple networks in isolation and selecting the fittest. Crossover and selection based on fitness are principles of evolutionary and, specifically, genetic algorithms, which are the inspiration for this idea. The crossover was performed in two primary ways: through random selection and through averaging corresponding weights. Both showed significant improvements after just one epoch compared to training the equal number of networks in isolation.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Neural Networks, Optimization, Algorithms, Parallel Computing
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\input{background}
+\input{methods}
+\input{results}
+\input{conclusion}
+
+
+
+\section*{Acknowledgments}
+We must thank the Illinois Institute of Technology and their BigDataX REU Program, as this was the source of funding for this research. We must also thank Argonne National Labs for hosting this research and for providing countless hours of compute time.
+
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+\nocite{*}
+\bibliography{refs}
+\bibliographystyle{ieeetr}
+
+
+
+% that's all folks
+\end{document}
+
+
